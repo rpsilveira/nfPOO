@@ -5,7 +5,8 @@ uses
   U_Principal in 'U_Principal.pas' {F_Principal},
   U_BaseControl in 'U_BaseControl.pas',
   U_Conexao in 'U_Conexao.pas',
-  U_Produto in 'U_Produto.pas';
+  U_Produto in 'U_Produto.pas',
+  U_Fornecedor in 'U_Fornecedor.pas';
 
 {$R *.res}
 
