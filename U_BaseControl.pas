@@ -1,3 +1,10 @@
+{***********************************************************}
+{ Exemplo de lançamento de nota fiscal orientado a objetos, }
+{ com banco de dados Oracle                                 }
+{ Reinaldo Silveira - reinaldopsilveira@gmail.com           }
+{ Franca/SP - set/2019                                      }
+{***********************************************************}
+
 unit U_BaseControl;
 
 interface
