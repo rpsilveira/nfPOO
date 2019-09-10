@@ -9,7 +9,7 @@ unit U_Fornecedor;
 
 interface
 
-uses U_BaseControl, System.SysUtils, Data.DB;
+uses U_BaseControl, System.SysUtils, Data.DB, Vcl.Controls;
 
 type
   TTipoBusca = (tbID, tbRazao, tbFantasia, tbCNPJ);
@@ -35,11 +35,14 @@ type
     property CNPJ: String read FCNPJ write SetCNPJ;
 
     function BuscaDados(pBusca: Variant; pBuscarPor: TTipoBusca): Boolean;
+    function Pesquisa(pPesq: String = ''): Boolean;
   end;
 
 implementation
 
 { TFornecedor }
+
+uses U_Pesquisa;
 
 function TFornecedor.BuscaDados(pBusca: Variant; pBuscarPor: TTipoBusca): Boolean;
 begin
@@ -66,6 +69,27 @@ begin
   FRAZAOSOCIAL   := Query.Fields[1].AsString;
   FNOMEFANTASIA  := Query.Fields[2].AsString;
   FCNPJ          := Query.Fields[3].AsString;
+end;
+
+function TFornecedor.Pesquisa(pPesq: String): Boolean;
+begin
+  if not Assigned(F_Pesquisa) then
+    F_Pesquisa := TF_Pesquisa.Create(Self);
+  try
+    F_Pesquisa.Caption   := 'Pesquisa de Fornecedores';
+    F_Pesquisa.SQL_BASE  := 'select FORNECEDOR_ID as "Código", RAZAOSOCIAL as "Razão social", NOMEFANTASIA as "Nome fantasia" from TB_FORNECEDOR';
+    F_Pesquisa.SQL_WHERE := 'where RAZAOSOCIAL like %s';
+    F_Pesquisa.SQL_ORDER := 'order by RAZAOSOCIAL';
+    F_Pesquisa.edtPesquisa.Text := pPesq;
+    F_Pesquisa.ShowModal;
+
+    Result := F_Pesquisa.ModalResult = mrOk;
+
+    if Result then
+      Result := BuscaDados(F_Pesquisa.ID, tbID);
+  finally
+    FreeAndNil(F_Pesquisa);
+  end;
 end;
 
 procedure TFornecedor.SetCNPJ(const Value: String);
