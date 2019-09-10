@@ -67,6 +67,7 @@ type
     procedure SetItem(index: Integer; const Value: TNFItem);
   public
     function Add: TNFItem;
+    procedure Delete(Index: Integer);
     property Items[index: Integer]: TNFItem read GetItem write SetItem;
   end;
 
@@ -196,7 +197,7 @@ begin
       Query.SQL.Add('  VR_TOTAL_ITEM) ');
       Query.SQL.Add('values( ');
       Query.SQL.Add(Format('%d, ', [FNF_ID]));
-      Query.SQL.Add(Format('%d, ', [FItensNF.Items[i].ITEM]));
+      Query.SQL.Add(Format('%d, ', [i + 1]));
       Query.SQL.Add(Format('%d, ', [FItensNF.Items[i].PRODUTO.PRODUTO_ID]));
       Query.SQL.Add(Format('%s, ', [FloatToSQL(FItensNF.Items[i].QUANTIDADE)]));
       Query.SQL.Add(Format('%s, ', [FloatToSQL(FItensNF.Items[i].VR_UNITARIO)]));
@@ -286,7 +287,11 @@ end;
 function TItens.Add: TNFItem;
 begin
   Result := TNFItem(inherited Add);
-  Result.ITEM := Self.Count;
+end;
+
+procedure TItens.Delete(Index: Integer);
+begin
+  inherited Delete(Index);
 end;
 
 function TItens.GetItem(index: Integer): TNFItem;
