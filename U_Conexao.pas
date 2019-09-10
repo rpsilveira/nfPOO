@@ -42,6 +42,7 @@ begin
   FConexao := TSQLConnection.Create(Self);
   try
     FConexao.LoginPrompt := False;
+    FConexao.DriverName  := 'Oracle';
     FConexao.Params.Values['VendorLib']   := 'oci.dll';
     FConexao.Params.Values['LibraryName'] := 'dbxora.dll';
     FConexao.Params.Values['DataBase']    := 'xe';

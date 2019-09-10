@@ -28,6 +28,7 @@ type
     property Query: TSQLQuery read GetQuery;
 
     function GetID(pSeqName: String): Integer;
+    function FloatToSQL(pValue: Double): String;
   end;
 
 implementation
@@ -47,6 +48,11 @@ destructor TBaseControl.Destroy;
 begin
   FQuery.Free;
   inherited;
+end;
+
+function TBaseControl.FloatToSQL(pValue: Double): String;
+begin
+  Result := StringReplace(FloatToStr(pValue), FormatSettings.DecimalSeparator, '.', []);
 end;
 
 function TBaseControl.GetID(pSeqName: String): Integer;

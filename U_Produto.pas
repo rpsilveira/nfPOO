@@ -48,7 +48,7 @@ begin
   Query.SQL.Add('select PRODUTO_ID, ');
   Query.SQL.Add('  DESCRICAO, ');
   Query.SQL.Add('  UNIDADE, ');
-  Query.SQL.Add('  PRECO, ');
+  Query.SQL.Add('  PRECO ');
   Query.SQL.Add('from TB_PRODUTO ');
 
   case pBuscarPor of
