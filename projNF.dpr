@@ -7,7 +7,8 @@ uses
   U_Conexao in 'U_Conexao.pas',
   U_Produto in 'U_Produto.pas',
   U_Fornecedor in 'U_Fornecedor.pas',
-  U_NatOperacao in 'U_NatOperacao.pas';
+  U_NatOperacao in 'U_NatOperacao.pas',
+  U_NotaFiscal in 'U_NotaFiscal.pas';
 
 {$R *.res}
 
