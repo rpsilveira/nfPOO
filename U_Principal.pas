@@ -201,8 +201,11 @@ begin
     Abort;
   end;
 
-  nf.ItensNF.Delete(lstItens.Selected.Index);
-  PreencheListView;
+  if Application.MessageBox('Confirma a exclusão do item selecionado?', 'Confirmação', MB_ICONQUESTION+MB_YESNO+MB_DEFBUTTON2) = mrYes then
+  begin
+    nf.ItensNF.Delete(lstItens.Selected.Index);
+    PreencheListView;
+  end;
 end;
 
 procedure TF_Principal.edtCodFornChange(Sender: TObject);

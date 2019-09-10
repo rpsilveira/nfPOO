@@ -342,6 +342,7 @@ object F_Principal: TF_Principal
         Caption = 'Valor total'
         Width = 90
       end>
+    HideSelection = False
     ReadOnly = True
     RowSelect = True
     ParentShowHint = False
